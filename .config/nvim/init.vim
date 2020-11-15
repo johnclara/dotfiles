@@ -8,7 +8,6 @@ function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
 
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 Plug 'tomtom/tcomment_vim' " gc comments
@@ -17,6 +16,10 @@ Plug 'milkypostman/vim-togglelist'
 Plug 'neomake/neomake', { 'for': ['rust', 'haskell'] }
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
+Plug 'google/vim-jsonnet'
+
+let g:jsonnet_fmt_fail_silently = 0
+let g:jsonnet_fmt_options = '--in-place --indent 4 --string-style d'
 
 " FZF / Ctrlp for file navigation
 if executable('fzf')
@@ -69,8 +72,7 @@ autocmd Syntax * syn match UndefinedMarks /???/ containedin=ALL
 au BufRead,BufNewFile *.sbt           set filetype=scala
 au BufRead,BufNewFile *.conf          set filetype=dosini
 au BufRead,BufNewFile *.bash*         set filetype=sh
-au BufRead,BufNewFile *.jsonnet*      set filetype=c
-au BufRead,BufNewFile *.libsonnet*    set filetype=c
+au BufRead,BufNewFile *.libsonnet*    set filetype=jsonnet
 au BufRead,BufNewFile todo*           set filetype=todo
 au BufRead,BufNewFile *.txt           set filetype=todo
 

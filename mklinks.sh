@@ -34,6 +34,7 @@ srcdir=~/.dotfiles
 destdir=~
 
 checkedlink .bash_profile
+checkedlink .zshenv
 # checkedlink .emacs
 # checkedlink .emacs.d/config
 # checkedlink .emacs.d/bin

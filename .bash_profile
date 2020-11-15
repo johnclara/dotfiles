@@ -1,3 +1,42 @@
+alias dpice='cd ~/dp/fork/data-platform-iceberg'
+alias dpconf='cd ~/dp/data-platform'
+alias kconf='cd ~/code/deployment-config'
+
+ssh-add -A 2> /dev/null
+
+export BASH_SILENCE_DEPRECATION_WARNING=1
+export BASE_PKI_PATH=~/certs
+
+alias setLocalGithub='git config --local user.name "johnclara" && git config --local user.email john.anthony.clara@gmail.com'
+alias copybara="/Users/jclara/code/copybara/bazel-bin/java/com/google/copybara/copybara"
+export VAULT_ADDR="https://vault.dsv31.boxdc.net:8200"
+
+export PATH=$PATH:/box/www/devtools/bin
+
+__kapply () { scp ~/code/deployment-config/release/dsv31/dev/$1/app.json jclara@compute-jump7001.dsv31.boxdc.net:~; ssh jclara@compute-jump7001.dsv31.boxdc.net 'kubectl apply -f ~/app.json'; }
+__kapply2 () { scp ~/code/deployment-config/release/dsv31-k8s-c1/dev/$1/app.json jclara@compute-jump7001.dsv31.boxdc.net:~; ssh jclara@compute-jump7001.dsv31.boxdc.net 'kubectl apply -f ~/app.json'; }
+__kapply_staging () { scp ~/code/deployment-config/release/dsv31/staging/$1/app.json jclara@compute-jump7001.dsv31.boxdc.net:~; ssh jclara@compute-jump7001.dsv31.boxdc.net 'kubectl apply -f ~/app.json'; }
+__kapply_staging2 () { scp ~/code/deployment-config/release/dsv31-k8s-c1/staging/$1/app.json jclara@compute-jump7001.dsv31.boxdc.net:~; ssh jclara@compute-jump7001.dsv31.boxdc.net 'kubectl apply -f ~/app.json'; }
+__kapply_prod () { scp ~/dcode/eployment-config/release/$2/prod/$1/app.json jclara@bastion:~; ssh jclara@bastion 'kubectl apply -f ~/app.json'; }
+alias kapply=__kapply
+alias kapply2=__kapply2
+alias kapply_staging=__kapply_staging
+alias kapply_staging2=__kapply_staging2
+alias kapply_prod=__kapply_prod
+
+__ubd () {
+  searchterm=$(echo "$1" | sed "s/ /%20/g")
+  curl http://api.urbandictionary.com/v0/define?term=$searchterm | python -m json.tool;
+}
+alias ubd=__ubd
+
+export JAVA_HOME=$(/usr/libexec/java_home)
+
+export GOPATH="$HOME/code/go"
+export PATH="$PATH:$GOPATH/bin"
+
+export SBT_OPTS="-Xmx2G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G -Xss2M  -Duser.timezone=GMT"
+
 # Private for stuff not on github (if exists)
 [ -f ~/.bash_private ] && source ~/.bash_private
 
@@ -80,33 +119,25 @@ sorted-du () {
   paste -d '#' <(du -cs $1) <(du -chs $1) | sort -rn | cut -d '#' -f 2
 }
 
-# Notes
-NOTES_BASE_PATH=""
-[ -d "$HOME/Documents/notes" ] && NOTES_BASE_PATH="$HOME/Documents/notes"
-[ -d "$HOME/docs/notes" ]      && NOTES_BASE_PATH="$HOME/docs/notes"
-
-if [ -n "NOTES_BASE_PATH" ]
-then
-  alias todo="(cd $NOTES_BASE_PATH; nvim todo.txt)"
-  alias lstodo="rg --no-line-number ' *(\[.\].*\*)$' $NOTES_BASE_PATH/notes/todo.txt --replace '\$1' | sort"
-
-  # Daily journal
-  # Currently set to a file per month, uncomment to make a file per day
-  function journal() {
-    # today=$(date +"%m-%d-%y")
-    thismonth=$(date +"%m-%y")
-    # [ ! -f $file ] && echo "# $today" > $file
-    (cd $NOTES_BASE_PATH; nvim "journal/$thismonth.txt")
-  }
-fi
-
 # ------------------------------------------------------
 #                       PATH
 # ------------------------------------------------------
 # Include
 # - local executables
-# - local python
 # - util
-export PATH=$PATH:~/.local/bin
-export PYTHONPATH=$PYTHONPATH:~/.local/python
-export PATH=$PATH:~/dev/util
+export PATH="/usr/local/opt/php@7.1/bin:$PATH"
+export PATH="/usr/local/opt/php@7.1/sbin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/jclara/access_stats/google-cloud-sdk/path.bash.inc' ]; then . '/Users/jclara/access_stats/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/jclara/access_stats/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/jclara/access_stats/google-cloud-sdk/completion.bash.inc'; fi
+export PATH="/usr/local/opt/terraform@0.11/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+__zeppelin_export () { ssh -A -t bastion -A scp $1:/tmp/export.tar.gz . && scp bastion:~/export.tar.gz . ; }
+alias zeppelin_export=__zeppelin_export

@@ -17,7 +17,7 @@ hi Constant cterm=none ctermbg=none ctermfg=green
 "        Boolean         a boolean constant: TRUE, false
 "        Float           a floating point constant: 2.3e10
 
-hi Identifier cterm=none ctermbg=none ctermfg=blue
+hi Identifier cterm=none ctermbg=none ctermfg=DarkMagenta
 "       *Identifier      any variable name
 "        Function        function name (also: methods for classes)
 "
@@ -68,14 +68,14 @@ hi Keyword cterm=bold ctermbg=none ctermfg=green
 
 hi Visual cterm=none ctermbg=15 ctermfg=8
 
-hi MatchParen   cterm=none ctermbg=none ctermfg=blue
+hi MatchParen   cterm=none ctermbg=none ctermfg=DarkMagenta
 
 " autocomplete results
 hi Pmenu        cterm=none ctermbg=8 ctermfg=white
 hi PmenuSel     cterm=none ctermbg=white ctermfg=8
 
 hi CursorLine   cterm=none ctermbg=8 ctermfg=none
-hi CursorLineNr cterm=none ctermbg=none ctermfg=blue
+hi CursorLineNr cterm=none ctermbg=none ctermfg=DarkMagenta
 
 hi LineNr       cterm=none ctermbg=none ctermfg=black
 
