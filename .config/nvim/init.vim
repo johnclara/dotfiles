@@ -9,7 +9,7 @@ function! DoRemote(arg)
 endfunction
 
 Plug 'scrooloose/nerdtree'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 Plug 'tomtom/tcomment_vim' " gc comments
 Plug 'tpope/vim-surround'
 Plug 'milkypostman/vim-togglelist'
@@ -72,9 +72,9 @@ autocmd Syntax * syn match UndefinedMarks /???/ containedin=ALL
 au BufRead,BufNewFile *.sbt           set filetype=scala
 au BufRead,BufNewFile *.conf          set filetype=dosini
 au BufRead,BufNewFile *.bash*         set filetype=sh
-au BufRead,BufNewFile *.libsonnet*    set filetype=jsonnet
-au BufRead,BufNewFile todo*           set filetype=todo
-au BufRead,BufNewFile *.txt           set filetype=todo
+au BufRead,BufNewFile *.libsonnet     set filetype=jsonnet
+au BufRead,BufNewFile *.jsonnet       set filetype=jsonnet
+au BufRead,BufNewFile *.pp            set filetype=puppet
 
 " Better split character
 " Override color scheme to make split them black
