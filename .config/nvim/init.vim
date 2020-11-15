@@ -17,6 +17,7 @@ Plug 'neomake/neomake', { 'for': ['rust', 'haskell'] }
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
 Plug 'google/vim-jsonnet'
+Plug 'edkolev/promptline.vim'
 
 let g:jsonnet_fmt_fail_silently = 0
 let g:jsonnet_fmt_options = '--in-place --indent 4 --string-style d'
@@ -86,7 +87,7 @@ set cursorline
 " }}}
 " KEYMAPPINGS {{{
 " Leader key
-let mapleader = ","
+let mapleader = " "
 
 " arrow keys disable
 nnoremap <right> <nop>
@@ -199,8 +200,6 @@ set guicursor=
 " PLUGINS + CUSTOM FUNCTIONS {{{
 " Custom
 source ~/.config/nvim/custom/functions.vim
-nnoremap <leader>t :call ToggleTodo()<cr>
-vnoremap <leader>t :call ToggleTodo()<cr>
 
 " deoplete
 let g:deoplete#enable_at_startup=1
@@ -251,7 +250,7 @@ let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#show_buffers = 0
 " let g:airline#extensions#hunks#enabled = 0
 " let g:airline_section_z = ""
-if get(g:, 'airline_theme', 'notloaded') == 'notloaded'
+if get(g:, 'airline_theme', 'notloaded') != 'customairline'
   source ~/.config/nvim/custom/customairline.vim
   let g:airline_theme="customairline"
 endif

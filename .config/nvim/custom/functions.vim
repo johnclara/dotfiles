@@ -27,3 +27,5 @@ endfunction
 function! ClearExtraWhitespace()
   %s/  *$//g
 endfunction
+
+autocmd VimLeave * :!touch ~/blahblahblah
