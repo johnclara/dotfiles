@@ -241,6 +241,11 @@ if executable('rg')
   nnoremap <leader>/ :Rg<SPACE>
 endif
 
+" promptline
+let g:promptline_preset = {
+        \'a' : [promptline#slices#cwd({ 'dir_limit' : 2 })],
+        \'b' : [promptline#slices#vcs_branch(), '$(git rev-parse --short HEAD 2>/dev/null)']}
+
 " airline
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#ctrlp#enabled = 1

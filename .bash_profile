@@ -1,6 +1,7 @@
 alias dpice='cd ~/dp/fork/data-platform-iceberg'
 alias dpconf='cd ~/dp/data-platform'
 alias kconf='cd ~/code/deployment-config'
+alias clear_swps='rm ~/.local/share/nvim/swap/*'
 
 ssh-add -A 2> /dev/null
 
@@ -30,10 +31,23 @@ __ubd () {
 }
 alias ubd=__ubd
 
-export JAVA_HOME=$(/usr/libexec/java_home)
+# java stuff
+
+export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
+export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
+
+alias java8='export JAVA_HOME=$JAVA_8_HOME'
+alias java11='export JAVA_HOME=$JAVA_11_HOME'
+
+# default to Java 11
+java8
+
+# go stuff
 
 export GOPATH="$HOME/code/go"
 export PATH="$PATH:$GOPATH/bin"
+
+# sbt stuff
 
 export SBT_OPTS="-Xmx2G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G -Xss2M  -Duser.timezone=GMT"
 
