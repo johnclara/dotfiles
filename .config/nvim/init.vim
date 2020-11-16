@@ -136,6 +136,10 @@ set pastetoggle=<F2>
 " Use escape to go back to normal mode
 tnoremap <Esc> <C-\><C-n>
 
+" Yank in visual and from clipboard in normal
+vnoremap <leader>y  "*y
+nnoremap <leader>p  "*p
+
 " }}}
 " BRACE COMPLETION {{{
 set showmatch
