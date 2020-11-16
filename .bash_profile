@@ -141,3 +141,5 @@ export NVM_DIR="$HOME/.nvm"
 
 __zeppelin_export () { ssh -A -t bastion -A scp $1:/tmp/export.tar.gz . && scp bastion:~/export.tar.gz . ; }
 alias zeppelin_export=__zeppelin_export
+
+source .promptline.sh

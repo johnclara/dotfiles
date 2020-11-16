@@ -10,6 +10,7 @@ endfunction
 
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'tomtom/tcomment_vim' " gc comments
 Plug 'tpope/vim-surround'
 Plug 'milkypostman/vim-togglelist'
@@ -17,7 +18,7 @@ Plug 'neomake/neomake', { 'for': ['rust', 'haskell'] }
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
 Plug 'google/vim-jsonnet'
-Plug 'edkolev/promptline.vim'
+Plug 'edkolev/promptline.vim' " needs powerline-fonts installed. they can be enabled through iterm2
 
 let g:jsonnet_fmt_fail_silently = 0
 let g:jsonnet_fmt_options = '--in-place --indent 4 --string-style d'
@@ -237,23 +238,43 @@ if executable('rg')
 endif
 
 " airline
+let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ctrlp#enabled = 1
+let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#netrw#enabled = 0
+let g:airline#extensions#po#enabled = 0
+let g:airline#extensions#quickfix#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#term#enabled = 0
+let g:airline#extensions#whitepace#enabled = 1
+let g:airline#extensions#wordcount#enabled = 0
+
 set laststatus=2
 let g:airline_left_sep=""
 let g:airline_left_alt_sep="|"
 let g:airline_right_sep=""
 let g:airline_right_alt_sep="|"
-let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline#extensions#tabline#tab_nr_type = 1 " show tab number not number of split panes
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#show_buffers = 0
 " let g:airline#extensions#hunks#enabled = 0
-" let g:airline_section_z = ""
-if get(g:, 'airline_theme', 'notloaded') != 'customairline'
-  source ~/.config/nvim/custom/customairline.vim
-  let g:airline_theme="customairline"
-endif
+"
+function! AirlineInit()
+    let g:airline_section_x = ''
+    let g:airline_section_y = ''
+    let g:airline_section_z = ''
+endfunction
+autocmd User AirlineAfterInit call AirlineInit()
+
+let g:airline_theme="minimalist"
+
+" FOR CUSTOM
+" if get(g:, 'airline_theme', 'notloaded') != 'customairline'
+"   source ~/.config/nvim/custom/customairline.vim
+"   let g:airline_theme="customairline"
+" endif
 
 " FZF
 if executable('rg')
@@ -331,7 +352,6 @@ else
 endif
 
 " ALE
-let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = {'go': ['golint', 'gofmt']}
 let g:ale_lint_delay = 800
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)

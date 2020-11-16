@@ -42,4 +42,4 @@ checkedlink .config/nvim/custom/functions.vim
 checkedlink .config/nvim/custom/customairline.vim
 checkedlink .config/nvim/syntax/todo.vim
 checkedlink .config/nvim/colors/nnkd.vim
-checkedlink .promptline
+checkedlink .promptline.sh
