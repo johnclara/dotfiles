@@ -1,9 +1,16 @@
-alias dpice='cd ~/dp/fork/data-platform-iceberg'
-alias dpconf='cd ~/dp/data-platform'
+alias dpice='cd ~/dp/data-platform-iceberg'
+alias iceadd='cd ~/dp/iceberg-addons'
+alias publishSnapshot='. ~/tools/publishSnapshot.sh'
+alias dataplatform='cd ~/dp/data-platform'
 alias kconf='cd ~/code/deployment-config'
-alias clear_swps='rm ~/.local/share/nvim/swap/*'
+alias parity='cd ~/code/gbox'
+alias dseingester='cd ~/dp/dse-ingester'
+alias clrswps='rm ~/.local/share/nvim/swap/*'
+alias gpg2='gpg'
+export PATH="/usr/local/opt/gnupg@1.4/libexec/gpgbin:$PATH"
 
 ssh-add -A 2> /dev/null
+alias isodate='date -u +"%Y-%m-%dT%H:%M:%SZ"'
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export BASE_PKI_PATH=~/certs

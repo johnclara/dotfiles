@@ -140,6 +140,8 @@ tnoremap <Esc> <C-\><C-n>
 vnoremap <leader>y  "*y
 nnoremap <leader>p  "*p
 
+nnoremap <leader>nowrap :set textwidth=0 wrapmargin=0
+
 " }}}
 " BRACE COMPLETION {{{
 set showmatch
